@@ -50,6 +50,7 @@
 
     <color name="system_accent2_800">#191919</color>
     <color name="system_accent3_800">#191919</color>
+    <color name="background_device_default_dark">#000000</color>
 
     <color name="system_background_dark">#000000</color>
     <color name="system_surface_dark">#000000</color>
