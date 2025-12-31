@@ -132,9 +132,6 @@ FULL_SYSTEM_OPTIMIZE_JAVA := true
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
     persist.arm64.memtag.system_server=off
 
-# Navigation
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural
 
 # NTFS
 PRODUCT_PACKAGES += \
