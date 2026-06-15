@@ -4,9 +4,55 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+soong_config_module_type {
+    name: "health_fast_charge_defaults",
+    module_type: "cc_defaults",
+    config_namespace: "lineage_health",
+    value_variables: [
+        "fast_charge_node",
+        "fast_charge_value_none",
+        "fast_charge_value_fast_charge",
+        "fast_charge_value_super_fast_charge",
+    ],
+    properties: ["cflags"],
+}
+
+health_fast_charge_defaults {
+    name: "fast_charge_defaults",
+    soong_config_variables: {
+        fast_charge_node: {
+            cflags: ["-DHEALTH_FAST_CHARGE_NODE=\"%s\""],
+            conditions_default: {
+                cflags: ["-DHEALTH_FAST_CHARGE_NODE="],
+            },
+        },
+        fast_charge_value_none: {
+            cflags: ["-DHEALTH_FAST_CHARGE_VALUE_NONE=\"%s\""],
+            conditions_default: {
+                cflags: ["-DHEALTH_FAST_CHARGE_VALUE_NONE="],
+            },
+        },
+        fast_charge_value_fast_charge: {
+            cflags: ["-DHEALTH_FAST_CHARGE_VALUE_FAST_CHARGE=\"%s\""],
+            conditions_default: {
+                cflags: ["-DHEALTH_FAST_CHARGE_VALUE_FAST_CHARGE="],
+            },
+        },
+        fast_charge_value_super_fast_charge: {
+            cflags: ["-DHEALTH_FAST_CHARGE_VALUE_SUPER_FAST_CHARGE=\"%s\""],
+            conditions_default: {
+                cflags: ["-DHEALTH_FAST_CHARGE_VALUE_SUPER_FAST_CHARGE="],
+            },
+        },
+    },
+}
+
 cc_binary {
     name: "vendor.lineage.health-service.default",
-    defaults: ["health_charging_control_defaults"],
+    defaults: [
+        "health_charging_control_defaults",
+        "fast_charge_defaults",
+    ],
     vendor: true,
     relative_install_path: "hw",
     init_rc: ["vendor.lineage.health-service.default.rc"],
